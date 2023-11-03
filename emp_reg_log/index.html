@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <form id="createAccountForm" style="display: block;" method="post" action="Reg.php">
+            <h2 style="text-align: center;">Employee Registration</h2>
+
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Emp Type:
+                    <select name="Emp_type" id="Emp_type">
+                        <option value="Full time">Full time</option>
+                        <option value="Part time">Part time</option>
+                        <option value="Intern time">Intern time</option></label>
+
+                </select>
+
+            </div>
+            <div class="" style="display: flex;">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="other" required>
+                <label for="other">Other</label>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Create Account</button>
+            </div>
+        </form>
+
+        <form id="loginForm" style="display: none;">
+            <h2 style="text-align: center;">Employee Login</h2>
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        <div class="switch">
+            <a href="#" onclick="showCreateAccountForm()">Create New Account</a>
+            <span> | </span>
+            <a href="#" onclick="showLoginForm()">Login</a>
+        </div>
+    </div>
+
+    <script>
+        function showCreateAccountForm() {
+            document.getElementById('createAccountForm').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+        }
+
+        function showLoginForm() {
+            document.getElementById('createAccountForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

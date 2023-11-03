@@ -1,0 +1,45 @@
+/* Add this CSS to a file named "styles.css" */
+
+/* Apply Bootstrap styles to the form */
+.container {
+  margin-top: 50px;
+}
+
+.panel-heading {
+  background-color: #337ab7;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.panel-body {
+  padding: 20px;
+  border: 2px solid black;
+}
+
+/* Style form elements */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+/* Style radio buttons */
+.radio-inline {
+  margin-right: 20px;
+}
+
+/* Style the submit button */
+.btn-primary {
+  width: 100%;
+}
+
+/* Add spacing for the toast */
+.toast {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}

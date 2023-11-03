@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.home_page {
+    text-align: center;
+
+}
+
+.home_page img {
+    width: 100%;
+    /* Set the desired width */
+    height: 100vh;
+    /* Automatically adjust the height while maintaining the aspect ratio */
+    border: 2px solid #ccc;
+    /* Add a border around the image */
+    margin: 20px;
+    /* Add margin for spacing */
+    background-size: cover;
+
+
+}
