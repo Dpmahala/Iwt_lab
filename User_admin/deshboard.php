@@ -1,58 +1,61 @@
 <?php
-session_start(); // Start a PHP session
+session_start();
 
-// Check if the user is logged in and their role is set in the session
 if (isset($_SESSION['user_type'])) {
-    $user_role = $_SESSION['user_type'];
+    $user_type = $_SESSION['user_type'];
 
     // Database connection code (replace with your actual database credentials)
-    $db_host = "localhost";
-    $db_user = "root";
-    $db_password = "";
-    $db_name = "user_admin";
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpassword = "";
+    $dbname = "user_admin";
 
-    $conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname);
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    // Query the database to retrieve user details based on their role
-    if ($user_type == 'employee') {
-        $sql = "SELECT * FROM reg WHERE user_type = 'employee'";
-        $title = " Details:";
-    } elseif ($user_type == 'admin') {
-        $sql = "SELECT * FROM reg WHERE user_type = 'admin'";
-        $title = " Details:";
-    } else {
-        $sql = ""; // Invalid role, so no data will be fetched
-        $title = "Invalid Role:";
-    }
+    // Use prepared statements to prevent SQL injection
 
-    if (!empty($sql)) {
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            echo "<h1>$title</h1>";
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "Name: " . $row["name"] . "<br>";
-                echo "Email: " . $row["email"] . "<br>";
-                // You can display other user details here as well
-                echo "<hr>";
-            }
-        } else {
-            echo "No data found for your role.";
+    if ($_SESSION["user_type"] == 'admin') {
+        $sql = "SELECT * FROM reg WHERE user_type = 'employee'";
+    } else {
+        $sql = "SELECT * FROM reg WHERE user_type = 'admin'";
+    }
+    $title = "Details:";
+
+    $result = mysqli_query($conn, $sql);
+
+    // Bind the parameter
+    // mysqli_stmt_bind_param($stmt, "s", $user_type);
+
+    // Execute the query
+    // mysqli_stmt_execute($stmt);
+
+    // Get the result set
+    // $result = mysqli_stmt_get_result($stmt);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        echo "<h1>$title</h1>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "Name: " . $row["name"] . "<br>";
+            echo "Email: " . $row["email"] . "<br>";
+            echo "User Type: " . $row["user_type"] . "<br>";
+
+            // You can display other user details here as well
+            echo "<hr>";
         }
     } else {
-        echo "Invalid role.";
+        echo "No data found for your role.";
     }
+
+    // Close the prepared statement
+    //  mysqli_stmt_close($stmt);
 
     // Close the database connection
     mysqli_close($conn);
 } else {
-    echo "You are not logged in. Please log in to view your details.";
+    echo "You are not logged in. Please log in to view your details.";
 }
-?>
-}
-
-$conn->close();
 ?>
