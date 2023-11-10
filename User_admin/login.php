@@ -21,9 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         // Verify the password
-        if (password_verify($password, $row["password"])) {
+        if ($row['password'] == $password) {
             // Password is correct, user is authenticated
             // Redirect to the home page or any other page after successful login
+            session_start();
+            $_SESSION['id'] = $row['id'];
             $_SESSION["user_type"] = $row["user_type"];
             header("Location: deshboard.php");
             exit();
@@ -34,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // User not found
-        $error_message = "User not found!";   
+        $error_message = "User not found!";
     }
 }
 
@@ -112,7 +114,7 @@ $conn->close();
             <div class="container">
                 <h1>Login Page</h1>
                 <form action="login.php" method="POST">
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required>
                     </div>
@@ -124,10 +126,10 @@ $conn->close();
                     <button class="submit-button" type="submit">Login</button>
                 </form>
                 <?php
-            if (isset($error_message)) {
-                echo "<p class='error-message'>$error_message</p>";
-            }
-            ?>
+                if (isset($error_message)) {
+                    echo "<p class='error-message'>$error_message</p>";
+                }
+                ?>
             </div>
         </body>
         <script src="script.js"></script>
